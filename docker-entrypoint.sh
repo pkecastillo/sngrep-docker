@@ -1,8 +1,10 @@
 #!/bin/sh
 
-if [ "$1" = "" ]; then
-  # Esto funciona si CMD está vacío o no se especifica en Dockerfile
-  exec sngrep --calls
-else
-  exec "$@"
-fi
+[ -z "$IP_HOMER" ] && { echo "Error: IP_HOMER no está definida"; exit 1; }
+[ -z "$PORT_HOMER" ] && { echo "Error: PORT_HOMER no está definida"; exit 1; }
+
+# ENV
+export IP_HOMER
+export PORT_HOMER
+
+exec sngrep -H udp:$IP_HOMER:$PORT_HOMER --no-interface -q

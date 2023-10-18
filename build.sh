@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t sngrep -f Dockerfile .
+docker build -t pkecastillo/sngrep-sniffer -f Dockerfile .
